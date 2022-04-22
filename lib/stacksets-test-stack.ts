@@ -8,7 +8,7 @@ export class StacksetsTestStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    //指定したYAMLファイルをStringに変換
+    //指定したパスのYAMLファイルをStringに変換
     const templateFilePath = path.resolve(__dirname, `../template/s3bucket.yml`)
     const templateToString = fs.readFileSync(templateFilePath).toString()
 

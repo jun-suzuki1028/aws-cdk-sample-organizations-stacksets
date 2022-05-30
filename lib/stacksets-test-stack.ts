@@ -8,7 +8,7 @@ export class StacksetsTestStack extends Stack {
     super(scope, id, props);
 
     //指定したパスのYAMLファイルをStringに変換
-    const templateFilePath = path.resolve(__dirname, `../template/CustomGuardrailsStack.yaml`)
+    const templateFilePath = path.resolve(__dirname, `../template/s3bucket.yml`)
     const templateToString = fs.readFileSync(templateFilePath).toString()
 
     //スタックを展開するリージョンを指定

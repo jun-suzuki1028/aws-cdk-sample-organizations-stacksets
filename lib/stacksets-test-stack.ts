@@ -8,18 +8,18 @@ export class StacksetsTestStack extends Stack {
     super(scope, id, props);
 
     //指定したパスのYAMLファイルをStringに変換
-    const templateFilePath = path.resolve(__dirname, `../template/s3bucket.yml`)
+    const templateFilePath = path.resolve(__dirname, `../template/CustomGuardrailsStack.yaml`)
     const templateToString = fs.readFileSync(templateFilePath).toString()
 
     //スタックを展開するリージョンを指定
-    const regions =  ["ap-northeast-1","us-east-1"]
+    const regions =  ["ap-northeast-1"]
     //スタックを展開するOUを指定 (r-xxx or ou-xxxxx-xxxxxxxx)
-    const organizationalUnitIds =  ["ou-erwc-vll1f06s"]
+    const organizationalUnitIds =  ["oou-xxxxx-xxxxxxxx"]
 
     new CfnStackSet(this, 'S3StackSet', {
-      stackSetName: `S3StackSets`,
+      stackSetName: `S3StackSet`,
       permissionModel: 'SERVICE_MANAGED',
-      // capabilities: ['CAPABILITY_NAMED_IAM'],
+      capabilities: ['CAPABILITY_NAMED_IAM'],
       autoDeployment: {
         enabled: true,
         retainStacksOnAccountRemoval: false
@@ -32,6 +32,7 @@ export class StacksetsTestStack extends Stack {
           },
         },
       ],
+      //callAs:"DELEGATED_ADMIN",委任先から実行する場合はコメントアウトを外す
       templateBody: templateToString
     })
   }

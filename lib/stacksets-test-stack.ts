@@ -14,7 +14,7 @@ export class StacksetsTestStack extends Stack {
     //スタックを展開するリージョンを指定
     const regions =  ["ap-northeast-1"]
     //スタックを展開するOUを指定 (r-xxx or ou-xxxxx-xxxxxxxx)
-    const organizationalUnitIds =  ["oou-xxxxx-xxxxxxxx"]
+    const organizationalUnitIds =  ["ou-xxxxx-xxxxxxxx"]
 
     new CfnStackSet(this, 'S3StackSet', {
       stackSetName: `S3StackSet`,
